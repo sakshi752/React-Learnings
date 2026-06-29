@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProductCard from '../components/ProductCard';
+import { useCart } from '../contexts/CartContext';
 
 const Products = () => {
   const [products, setProducts] = useState([
@@ -44,11 +45,22 @@ const Products = () => {
       category: "accessories",
     }
   ]);
+   
+  const { cartItems} = useCart();
+
+  useState(()=>{
+    localStorage.setItem("products",JSON.stringify(products))
+  },[])
+
+  useEffect(()=>{
+    localStorage.setItem("cart",JSON.stringify(cartItems))
+  },[cartItems])
+
   return (
     <div className='grid grid-cols-4  gap-5 '>
       {products.map(product => {
         return (
-          <ProductCard key={product.id} id={product.id} title={product.title} amount={product.price} image={product.image} category={product.category} />
+          <ProductCard key={product.id} id={product.id} product ={product}/>
         )
       })}
     </div>
