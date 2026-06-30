@@ -39,7 +39,7 @@ const ProductCard = ({ product }) => {
                 <div className='flex items-center justify-between'>
                     <span className='text-gray-400'>{product.category}</span>
                     {inCart ? <div className='flex items-center justify-center'>
-                        <span className='bg-gray-200 text-black font-bold text-lg p-2 rounded-md cursor-pointer' onClick={() => handleQuantity(false, id, title)}>-</span>
+                        <span className='bg-gray-200 text-black font-bold text-lg p-2 rounded-md cursor-pointer' onClick={() => handleQuantity(false,product.id, product.title)}>-</span>
                         <span className='p-2 font-bold text-lg'>{quantity}</span>
                         <span className='bg-gray-200 text-black font-bold text-lg p-2 rounded-md cursor-pointer' onClick={() => handleQuantity(true, product.id, product.title)}>+</span>
                     </div> : <button className='bg-gray-200 text-black text-lg p-2 rounded-md hover:bg-gray-800 hover:text-white cursor-pointer' onClick={add}>Add</button>}

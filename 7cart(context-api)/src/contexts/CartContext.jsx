@@ -34,10 +34,15 @@ export const CartProvider = ({ children }) => {
     }
 
     const removeFromCart = (productId, title) => {
-        setCartItems(prev => {
-            return prev.filter(item => item.id != productId)
-        })
-        toast.success(`${title} is removed from cart 🛒`);
+        if (productId) {
+            setCartItems(prev => {
+                return prev.filter(item => item.id != productId)
+            })
+            toast.success(`${title} is removed from cart 🛒`);
+        }else{
+            toast.error("Please give item to be removed")
+        }
+
     }
 
     const handleQuantity = (isInc, productId, title) => {
